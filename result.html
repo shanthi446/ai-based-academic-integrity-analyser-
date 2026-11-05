@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis Report</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🛡️ Academic Integrity Analyzer</h2>
+    <a href="/">Home</a>
+</nav>
+
+<section class="result-dashboard">
+
+    <h1>Academic Integrity Analysis Report</h1>
+
+    <p>Assignment analysis submitted successfully.</p>
+
+    <div class="result-card">
+
+        <h2>Student Information</h2>
+
+        <p><b>Student ID:</b> {{ student_id }}</p>
+
+        <p><b>Student Name:</b> {{ student_name }}</p>
+
+        <p><b>Assignment Title:</b> {{ title }}</p>
+
+        <p><b>Uploaded Document:</b> {{ filename }}</p>
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Original Claim</h2>
+
+        <p>{{ original_claim }}</p>
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Submitted Claim</h2>
+
+        <p>{{ submitted_claim }}</p>
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Assignment Content</h2>
+
+        <p class="assignment-content">{{ assignment }}</p>
+
+    </div>
+    
+<div class="result-card">
+
+    <h2>📄 Document Metadata Forensics</h2>
+
+    <p>
+        <b>File Name:</b> {{ metadata.filename }}
+    </p>
+
+    <p>
+        <b>File Type:</b> {{ metadata.file_type }}
+    </p>
+
+    <p>
+        <b>Document Author:</b> {{ metadata.author }}
+    </p>
+
+    <p>
+        <b>Creation Date:</b> {{ metadata.created }}
+    </p>
+
+    <p>
+        <b>Last Modified:</b> {{ metadata.modified }}
+    </p>
+
+    <p>
+        <b>Last Modified By:</b> {{ metadata.creator }}
+    </p>
+
+    <p>
+        <b>Forensic Status:</b> {{ metadata.status }}
+    </p>
+
+</div>
+
+<div class="result-card">
+
+    <h2>🔍 Claim Transformation Severity</h2>
+
+    {% if claim_result.error %}
+
+        <p>{{ claim_result.error }}</p>
+
+    {% else %}
+
+        <p>
+            <b>Similarity Score:</b>
+            {{ claim_result.similarity }}%
+        </p>
+
+        <p>
+            <b>Transformation Score:</b>
+            {{ claim_result.transformation }}%
+        </p>
+
+        <p>
+            <b>Severity Level:</b>
+            {{ claim_result.severity }}
+        </p>
+
+        <p>
+            <b>Status:</b>
+            {{ claim_result.status }}
+        </p>
+
+    {% endif %}
+
+</div>
+
+<div class="result-card">
+
+    <h2>⚠️ Integrity Risk Propagation Score</h2>
+
+    <h1 style="color:#2563eb">
+        {{ risk_result.risk_score }}%
+    </h1>
+
+    <h3>Risk Level: {{ risk_result.risk_level }}</h3>
+
+    <p>
+        Status: {{ risk_result.status }}
+    </p>
+
+    <h3>Risk Indicators</h3>
+
+    {% for name, score in risk_result.indicators.items() %}
+        <p>
+            <b>{{ name }}:</b> {{ score }}%
+        </p>
+    {% endfor %}
+
+    <p class="notice">
+        This is a preliminary indicator score,
+        not proof of academic misconduct.
+    </p>
+
+</div>
+
+<div class="result-card">
+    <h2>📚 Evidence Depth Score</h2>
+
+    <h1>{{ evidence_result.score }}%</h1>
+
+    <h3>
+        Evidence Count:
+        {{ evidence_result.evidence_count }}
+    </h3>
+
+    <h3>Status: {{ evidence_result.status }}</h3>
+
+    <h3>Analysis Details</h3>
+
+    {% for detail in evidence_result.details %}
+        <p>✔ {{ detail }}</p>
+    {% endfor %}
+
+    <p class="notice">
+        This score measures evidence completeness,
+        not the authenticity of the sources.
+    </p>
+</div>
+
+{% if peer_result %}
+<div class="result-card">
+
+    <h2>👥 Peer Collusion Detection</h2>
+
+    {% if peer_result.similarity is defined %}
+
+        <h1>{{ peer_result.similarity }}%</h1>
+
+        <h3>{{ peer_result.status }}</h3>
+
+        <p>
+            Student 1: {{ peer_result.student1 }}
+        </p>
+
+        <p>
+            Student 2: {{ peer_result.student2 }}
+        </p>
+
+        <p>
+            Detection Method:
+            {{ peer_result.method }}
+        </p>
+
+    {% else %}
+
+        <p>{{ peer_result.error }}</p>
+
+    {% endif %}
+
+    <p class="notice">
+        Similarity is an indicator for human review,
+        not proof of collusion.
+    </p>
+
+</div>
+{% endif %}
+
+<div class="result-card">
+    <h2>🤖 LLM Academic Integrity Report</h2>
+
+    <h3>Automated Analysis Summary</h3>
+
+    <pre style="
+        white-space: pre-wrap;
+        font-family: Arial;
+        line-height: 1.7;
+    ">{{ llm_report }}</pre>
+
+</div>
+
+
+    <div class="result-card">
+
+        <h2>Analysis Modules</h2>
+
+        <div class="result-grid">
+
+            <div class="result-item">Peer Collusion Detection</div>
+
+            <div class="result-item">Document Metadata Forensics</div>
+
+            <div class="result-item">Claim Transformation Severity</div>
+
+            <div class="result-item">Integrity Risk Propagation</div>
+
+            <div class="result-item">Evidence Depth Score</div>
+
+            <div class="result-item">LLM Integration</div>
+
+        </div>
+
+        <p class="notice">
+            Analysis modules are ready for integration.
+            Actual scores will appear after implementing
+            their respective analysis modules.
+        </p>
+
+    </div>
+
+    <a href="/dashboard" class="back-btn">
+        Submit Another Assignment
+    </a>
+
+</section>
+
+</body>
+</html>
