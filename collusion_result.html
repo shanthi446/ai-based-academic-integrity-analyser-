@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collusion Analysis Result</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🛡️ Integrity Analyzer</h2>
+    <a href="/">Home</a>
+</nav>
+
+<section class="dashboard">
+
+    <div class="form-box">
+
+        <h1>Peer Collusion Result</h1>
+
+        {% if result.error %}
+
+            <h2>{{ result.error }}</h2>
+
+        {% else %}
+
+            <h3>Student 1: {{ result.student1 }}</h3>
+
+            <h3>Student 2: {{ result.student2 }}</h3>
+
+            <h2>Similarity Score</h2>
+
+            <h1 style="color:#2563eb">
+                {{ result.similarity }}%
+            </h1>
+
+            <h3>Status: {{ result.status }}</h3>
+
+            <p>Method: {{ result.method }}</p>
+
+            <p>
+                This score indicates textual similarity.
+                It is not proof of academic misconduct.
+            </p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/peer-collusion"
+           class="btn">Compare Again</a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

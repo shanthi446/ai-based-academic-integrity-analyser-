@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🛡️ Academic Integrity Analyzer</h2>
+    <a href="/">Home</a>
+</nav>
+<div class="form-box"></div>
+<section class="dashboard">
+
+    <h1>Student Dashboard</h1>
+
+    <p>Submit your academic assignment for integrity analysis.</p>
+
+    <form action="/analyze" method="POST"
+          enctype="multipart/form-data">
+
+        <div class="form-box">
+
+            <label>Student ID</label>
+            <input type="text"
+                   name="student_id"
+                   placeholder="Enter Student ID"
+                   required>
+
+            <label>Student Name</label>
+            <input type="text"
+                   name="student_name"
+                   placeholder="Enter Student Name"
+                   required>
+
+            <label>Assignment Title</label>
+            <input type="text"
+                   name="title"
+                   placeholder="Enter Assignment Title"
+                   required>
+
+            <label>Original Claim</label>
+            <textarea name="original_claim"
+                      placeholder="Enter original claim"
+                      required></textarea>
+
+            <label>Submitted Claim</label>
+            <textarea name="submitted_claim"
+                      placeholder="Enter submitted claim"
+                      required></textarea>
+
+            <label>Assignment Content</label>
+            <textarea name="assignment"
+                      placeholder="Paste your assignment content here"
+                      required></textarea>
+            
+<label>Supporting Evidence</label>
+
+<textarea
+    name="evidence_text"
+    placeholder="Enter supporting evidence, references, citations, URLs and publication details..."
+    rows="5"></textarea>
+    
+<label>Supporting Evidence</label>
+
+<textarea
+    name="evidence_text"
+    placeholder="Enter supporting evidence, references, citations, URLs and publication details..."
+    rows="5"></textarea>
+
+        
+<h3>Peer Collusion Detection</h3>
+
+<label>Compare With Student ID</label>
+<input
+    type="text"
+    name="peer_student_id"
+    placeholder="Enter another student ID">
+
+<label>Other Student Assignment</label>
+<textarea
+    name="peer_assignment"
+    placeholder="Paste another student's assignment here"
+    rows="5"></textarea>
+
+            <label>Upload Assignment Document</label>
+            <input type="file"
+                   name="document"
+                   accept=".pdf,.docx,.txt">
+
+            <button type="submit" class="submit-btn">
+                Analyze Assignment
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peer Collusion Detection</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🛡️ Academic Integrity Analyzer</h2>
+    <a href="/">Home</a>
+</nav>
+
+<section class="dashboard">
+
+    <h1>Peer Collusion Detection</h1>
+
+    <p>Compare two student assignments</p>
+
+    <form action="/peer-collusion/analyze"
+          method="POST">
+
+        <div class="form-box">
+
+            <label>Student 1 ID</label>
+            <input type="text" name="student1" required>
+
+            <label>Student 1 Assignment</label>
+            <textarea name="text1" required
+            placeholder="Paste first assignment"></textarea>
+
+            <label>Student 2 ID</label>
+            <input type="text" name="student2" required>
+
+            <label>Student 2 Assignment</label>
+            <textarea name="text2" required
+            placeholder="Paste second assignment"></textarea>
+
+            <button class="submit-btn" type="submit">
+                Compare Assignments
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+</body>
+</html>
